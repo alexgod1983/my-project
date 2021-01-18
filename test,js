@@ -1,0 +1,80 @@
+// ==UserScript==
+// @name         New Userscript
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://www.youtube.com/*
+// @grant        none
+// ==/UserScript==
+
+(function () {
+    'use strict';
+    window.onload = () => {
+        let style = `<style>
+        @keyframes logo {
+            10% {
+                transform: rotate(100deg);
+            }
+
+            20% {
+                transform: rotate(60deg);
+            }
+
+            30% {
+                transform: rotate(95deg);
+                opacity: 1;
+            }
+
+            40% {
+                transform: rotate(65deg);
+            }
+
+            50% {
+                transform: rotate(90deg);
+            }
+
+            60% {
+                transform: rotate(70deg);
+            }
+
+            70% {
+                transform: rotate(85deg);
+            }
+
+            80% {
+                transform: rotate(75deg);
+            }
+
+            90% {
+                transform: rotate(85deg);
+                opacity: 1;
+            }
+
+            100% {
+            transform: translateY(600px);
+            opacity :0;
+            }
+        }
+
+        .test-animation {
+            transform-origin:top left;
+            animation-name: logo;
+            animation-duration: 4s;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+            /*animation-iteration-count:infinite;*/
+        }
+        </style>`;
+
+        document.head.insertAdjacentHTML("beforeend", style);
+
+        var ids = ['search-form', 'logo'];
+        ids.forEach((id) => {
+            var el = document.querySelector('#' + id);
+            el.addEventListener('mouseover', (e) => {
+                el.className += " test-animation";
+            });
+        })
+    }
+})();
